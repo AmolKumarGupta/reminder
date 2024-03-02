@@ -20,3 +20,5 @@ app
 
 # Go workspace file
 go.work
+
+storage/*.csv
