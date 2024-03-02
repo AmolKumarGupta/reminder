@@ -1,0 +1,35 @@
+package cmd
+
+import (
+	"fmt"
+	"os"
+
+	"github.com/spf13/cobra"
+)
+
+var (
+	rootCmd = &cobra.Command{
+		Use:   "reminder",
+		Short: "reminder",
+		Long:  "reminder cli",
+		Run: func(cmd *cobra.Command, args []string) {
+			if ok, _ := cmd.Flags().GetBool("version"); ok {
+				versionCmd.Run(cmd, args)
+				return
+			}
+			fmt.Println(cmd.UsageString())
+		},
+	}
+)
+
+func init() {
+	rootCmd.Flags().BoolP("version", "v", false, "version")
+	rootCmd.AddCommand(versionCmd)
+}
+
+func Execute() {
+	if err := rootCmd.Execute(); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+}
