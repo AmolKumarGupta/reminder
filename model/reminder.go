@@ -11,34 +11,40 @@ type Reminder struct {
 	Desc string
 }
 
-func (r Reminder) Save() {
+func (r Reminder) Save() error {
 	records, err := r.Read()
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	records = append(records, []string{r.Date, r.Name, r.Desc})
 
-	r.Write(records)
+	if err := r.Write(records); err != nil {
+		return err
+	}
+
+	return nil
 }
 
-func (r Reminder) Write(records [][]string) {
+func (r Reminder) Write(records [][]string) error {
 	file, err := os.OpenFile(App.File, os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	writer := csv.NewWriter(file)
 
 	if err := writer.WriteAll(records); err != nil {
-		panic(err)
+		return err
 	}
+
+	return nil
 }
 
 func (r Reminder) Read() ([][]string, error) {
 	file, err := os.OpenFile(App.File, os.O_CREATE|os.O_RDONLY, 0666)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	defer file.Close()
@@ -47,7 +53,7 @@ func (r Reminder) Read() ([][]string, error) {
 
 	records, err := reader.ReadAll()
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	return records, nil

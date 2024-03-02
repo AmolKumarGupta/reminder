@@ -46,8 +46,9 @@ var AddCmd = &cobra.Command{
 			Desc: desc,
 		}
 
-		// fmt.Println(rem)
-		rem.Save()
+		if err := rem.Save(); err != nil {
+			fmt.Print(err)
+		}
 	},
 }
 
