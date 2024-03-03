@@ -12,7 +12,7 @@ type Reminder struct {
 }
 
 func (r Reminder) Save() error {
-	records, err := r.Read()
+	records, err := Read()
 	if err != nil {
 		return err
 	}
@@ -41,7 +41,7 @@ func (r Reminder) Write(records [][]string) error {
 	return nil
 }
 
-func (r Reminder) Read() ([][]string, error) {
+func Read() ([][]string, error) {
 	file, err := os.OpenFile(App.File, os.O_CREATE|os.O_RDONLY, 0666)
 	if err != nil {
 		return nil, err
