@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/AmolKumarGupta/reminder-cli/model"
+	"github.com/AmolKumarGupta/reminder-cli/util"
 	"github.com/spf13/cobra"
 )
 
@@ -23,7 +24,7 @@ var AddCmd = &cobra.Command{
 			return
 		}
 
-		name, err := get("Enter Title: ")
+		name, err := get(util.Bold("Enter Title: "))
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -34,7 +35,7 @@ var AddCmd = &cobra.Command{
 			return
 		}
 
-		desc, err := get("Enter Description: ")
+		desc, err := get(util.Bold("Enter Description: "))
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -55,7 +56,7 @@ var AddCmd = &cobra.Command{
 func getDate() (string, error) {
 	var date string
 
-	fmt.Print("Enter day and month (25-03): ")
+	fmt.Print(util.Bold("Enter day and month (25-03): "))
 
 	if _, err := fmt.Scanln(&date); err != nil {
 		return "", errors.New("something is wrong while fetching date")
