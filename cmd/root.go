@@ -26,6 +26,7 @@ func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "version")
 	rootCmd.AddCommand(versionCmd)
 	rootCmd.AddCommand(AddCmd)
+	rootCmd.AddCommand(ListCmd)
 }
 
 func Execute() {
