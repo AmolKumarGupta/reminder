@@ -19,6 +19,11 @@ var ListCmd = &cobra.Command{
 			return
 		}
 
+		if len(records) == 0 {
+			fmt.Println("No Data Found !")
+			return
+		}
+
 		header := []string{"Date", "Name", "Description"}
 
 		table.New().
