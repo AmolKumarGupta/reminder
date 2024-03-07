@@ -8,8 +8,8 @@ import (
 
 var versionCmd = &cobra.Command{
 	Use:   "version",
-	Short: "version",
-	Long:  "get reminder cli version",
+	Short: "Version",
+	Long:  "Get reminder cli version",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("reminder 0.0.1")
 	},
