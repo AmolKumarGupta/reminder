@@ -3,6 +3,8 @@ package model
 import (
 	"encoding/csv"
 	"os"
+	"sort"
+	"time"
 )
 
 type Reminder struct {
@@ -18,6 +20,12 @@ func (r Reminder) Save() error {
 	}
 
 	records = append(records, []string{r.Date, r.Name, r.Desc})
+
+	sort.Slice(records, func(i, j int) bool {
+		iDate, _ := time.Parse("02-01", records[i][0])
+		jDate, _ := time.Parse("02-01", records[j][0])
+		return iDate.Before(jDate)
+	})
 
 	if err := r.Write(records); err != nil {
 		return err
