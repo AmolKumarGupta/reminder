@@ -15,8 +15,8 @@ import (
 
 var AddCmd = &cobra.Command{
 	Use:   "add",
-	Short: "add reminder",
-	Long:  "add reminder in the store",
+	Short: "Add reminder",
+	Long:  "Add reminder in the store",
 	Run: func(cmd *cobra.Command, args []string) {
 		date, err := getDate()
 		if err != nil {
@@ -24,7 +24,7 @@ var AddCmd = &cobra.Command{
 			return
 		}
 
-		name, err := get(text.Bold("Enter Title: "))
+		name, err := get(text.New("Enter Title: ").Bold().String())
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -35,7 +35,7 @@ var AddCmd = &cobra.Command{
 			return
 		}
 
-		desc, err := get(text.Bold("Enter Description: "))
+		desc, err := get(text.New("Enter Description: ").Bold().String())
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -56,7 +56,7 @@ var AddCmd = &cobra.Command{
 func getDate() (string, error) {
 	var date string
 
-	fmt.Print(text.Bold("Enter day and month (25-03): "))
+	fmt.Print(text.New("Enter day and month (25-03): ").Bold())
 
 	if _, err := fmt.Scanln(&date); err != nil {
 		return "", errors.New("something is wrong while fetching date")

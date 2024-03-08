@@ -17,7 +17,8 @@ var (
 				versionCmd.Run(cmd, args)
 				return
 			}
-			fmt.Println(cmd.UsageString())
+
+			UpComingCmd.Run(cmd, args)
 		},
 	}
 )
@@ -27,6 +28,7 @@ func init() {
 	rootCmd.AddCommand(versionCmd)
 	rootCmd.AddCommand(AddCmd)
 	rootCmd.AddCommand(ListCmd)
+	rootCmd.AddCommand(UpComingCmd)
 }
 
 func Execute() {
