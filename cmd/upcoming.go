@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/AmolKumarGupta/reminder-cli/model"
+	"github.com/AmolKumarGupta/reminder-cli/tui/table"
 	"github.com/AmolKumarGupta/reminder-cli/tui/text"
 	"github.com/spf13/cobra"
 )
@@ -16,7 +17,7 @@ var UpComingCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		now := time.Now()
 
-		fmt.Printf("%s - %d %s\n\n", text.New("Upcoming Events").Bold(), now.Day(), now.Month())
+		fmt.Printf("%s\n\n", text.New("Upcoming Events").Bold())
 
 		records, err := model.Read()
 		if err != nil {
@@ -32,10 +33,19 @@ var UpComingCmd = &cobra.Command{
 			return
 		}
 
-		for i := index; i <= size; i++ {
-			data := records[i]
-			fmt.Printf("%s: %s\n", text.New(data[0]).Bold(), data[1])
+		data := [][]string{}
+		for i := index; i < index+7; i++ {
+			if i > size {
+				break
+			}
+
+			data = append(data, records[i])
 		}
+
+		table.New().
+			Header([]string{"Date", "Name", "Description"}).
+			Add(data).
+			Render()
 	},
 }
 
