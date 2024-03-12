@@ -15,6 +15,8 @@ var UpComingCmd = &cobra.Command{
 	Short: "List upcoming 5 reminder",
 	Long:  "List upcoming 5 reminder based on the dates",
 	Run: func(cmd *cobra.Command, args []string) {
+		global(cmd)
+
 		now := time.Now()
 
 		fmt.Printf("%s\n\n", text.New("Upcoming Events").Bold())

@@ -18,6 +18,8 @@ var AddCmd = &cobra.Command{
 	Short: "Add reminder",
 	Long:  "Add reminder in the store",
 	Run: func(cmd *cobra.Command, args []string) {
+		global(cmd)
+
 		date, err := getDate()
 		if err != nil {
 			fmt.Println(err)
