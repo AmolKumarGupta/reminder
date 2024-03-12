@@ -13,6 +13,8 @@ var ListCmd = &cobra.Command{
 	Short: "List all records",
 	Long:  "List all records",
 	Run: func(cmd *cobra.Command, args []string) {
+		global(cmd)
+
 		records, err := model.Read()
 		if err != nil {
 			fmt.Println("Something went wrong while reading")

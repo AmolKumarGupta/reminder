@@ -22,4 +22,7 @@ reminder
 # Go workspace file
 go.work
 
-storage/*.csv
+storage/*
+*.csv
+.reminder
+!.reminder.example

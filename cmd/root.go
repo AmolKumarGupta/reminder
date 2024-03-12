@@ -13,6 +13,8 @@ var (
 		Short: "reminder",
 		Long:  "reminder cli",
 		Run: func(cmd *cobra.Command, args []string) {
+			global(cmd)
+
 			if ok, _ := cmd.Flags().GetBool("version"); ok {
 				versionCmd.Run(cmd, args)
 				return
@@ -25,6 +27,8 @@ var (
 
 func init() {
 	rootCmd.Flags().BoolP("version", "v", false, "version")
+	rootCmd.PersistentFlags().StringP("config", "c", "", "set config file using --config=filename")
+
 	rootCmd.AddCommand(versionCmd)
 	rootCmd.AddCommand(AddCmd)
 	rootCmd.AddCommand(ListCmd)
