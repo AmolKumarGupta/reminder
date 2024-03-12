@@ -12,8 +12,8 @@ import (
 
 var UpComingCmd = &cobra.Command{
 	Use:   "upcoming",
-	Short: "List upcoming reminder in next 7 days",
-	Long:  "List upcoming reminder in next 7 days based on the dates",
+	Short: "List upcoming 5 reminder",
+	Long:  "List upcoming 5 reminder based on the dates",
 	Run: func(cmd *cobra.Command, args []string) {
 		now := time.Now()
 
