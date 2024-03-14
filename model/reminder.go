@@ -37,7 +37,7 @@ func (r Reminder) Save() error {
 }
 
 func (r Reminder) Write(records [][]string) error {
-	file, err := os.OpenFile(config.App.File, os.O_WRONLY|os.O_CREATE, 0666)
+	file, err := os.OpenFile(config.Db(), os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
 		return err
 	}
@@ -52,7 +52,7 @@ func (r Reminder) Write(records [][]string) error {
 }
 
 func Read() ([][]string, error) {
-	file, err := os.OpenFile(config.App.File, os.O_CREATE|os.O_RDONLY, 0666)
+	file, err := os.OpenFile(config.Db(), os.O_CREATE|os.O_RDONLY, 0666)
 	if err != nil {
 		return nil, err
 	}
