@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	goPath "path"
 )
 
 type Config struct {
@@ -13,6 +14,7 @@ type Config struct {
 
 var (
 	configPath = ".reminder"
+	Dir        = ""
 	App        = &Config{File: "storage/output.csv"}
 )
 
@@ -21,8 +23,19 @@ func init() {
 }
 
 func Set(path string) {
+	binPath, pathErr := os.Executable()
+	if pathErr != nil {
+		fmt.Println(pathErr)
+		os.Exit(1)
+	}
+
+	Dir = goPath.Dir(binPath)
+
 	if path != "" {
 		configPath = path
+
+	} else {
+		configPath = goPath.Join(Dir, configPath)
 	}
 
 	_, err := os.Stat(configPath)
@@ -39,4 +52,8 @@ func Set(path string) {
 
 	byte, _ := io.ReadAll(jsonFile)
 	json.Unmarshal(byte, &App)
+}
+
+func Db() string {
+	return goPath.Join(Dir, App.File)
 }
