@@ -1,5 +1,7 @@
+
 ## Reminder CLI
 
+![sample_image](https://github.com/AmolKumarGupta/reminder/assets/88397611/908c18cd-b13b-4f8c-9f98-77079a2d6049)
 
 ### Commands
  - add
@@ -24,6 +26,3 @@ you can also set custom file as config using `--config` flag, you can copy from 
     "storage": "storage/output.long.csv"
 }
 ```
-
-### Image
-![Screenshot from 2024-03-09 01-06-22](https://github.com/AmolKumarGupta/reminder/assets/88397611/9b5a01c4-7cca-49f1-83c0-1cf575efe9d7)
